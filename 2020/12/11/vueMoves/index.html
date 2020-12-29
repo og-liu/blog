@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>五招让你成为Vue.js大师 | OG-Liu's Blog</title><meta name="keywords" content="vuejs"><meta name="author" content="Liu Kun"><meta name="copyright" content="Liu Kun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="对大部分人来说, 掌握Vue.js基本的几个API后就已经能够正常地开发前端网站。但如果你想更加高效地使用Vue来开发, 成为Vue.js大师, 那下面的这五招你一定得认真学习一下了。   第一招: 化繁为简的Watchers场景还原: 12345678created()&amp;#123;    this.fetchPostList()&amp;#125;,watch: &amp;#123;    searchInp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五招让你成为Vue.js大师">
+<meta property="og:url" content="https://ogliu.com/2020/12/11/vueMoves/index.html">
+<meta property="og:site_name" content="OG-Liu&#39;s Blog">
+<meta property="og:description" content="对大部分人来说, 掌握Vue.js基本的几个API后就已经能够正常地开发前端网站。但如果你想更加高效地使用Vue来开发, 成为Vue.js大师, 那下面的这五招你一定得认真学习一下了。   第一招: 化繁为简的Watchers场景还原: 12345678created()&amp;#123;    this.fetchPostList()&amp;#125;,watch: &amp;#123;    searchInp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120039.jpg">
+<meta property="article:published_time" content="2020-12-11T01:41:08.000Z">
+<meta property="article:modified_time" content="2020-12-29T09:46:58.397Z">
+<meta property="article:author" content="Liu Kun">
+<meta property="article:tag" content="vuejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120039.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ogliu.com/2020/12/11/vueMoves/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-29 17:46:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114753.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120039.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">OG-Liu's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">五招让你成为Vue.js大师</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-11T01:41:08.000Z" title="发表于 2020-12-11 09:41:08">2020-12-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-29T09:46:58.397Z" title="更新于 2020-12-29 17:46:58">2020-12-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"> </div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>对大部分人来说, 掌握Vue.js基本的几个API后就已经能够正常地开发前端网站。但如果你想更加高效地使用Vue来开发, 成为Vue.js大师, 那下面的这五招你一定得认真学习一下了。 </p>
+</blockquote>
+<h1 id="第一招-化繁为简的Watchers"><a href="#第一招-化繁为简的Watchers" class="headerlink" title="第一招: 化繁为简的Watchers"></a>第一招: 化繁为简的Watchers</h1><p>场景还原:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">    this.fetchPostList()</span><br><span class="line">&#125;,</span><br><span class="line">watch: &#123;</span><br><span class="line">    searchInputValue()&#123;</span><br><span class="line">        this.fetchPostList()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>组件创建的时候我们获取一次列表, 同时监听input框, 每当发生变化的时候重新获取一次筛选后的列表这个场景很常见, 有没有办法优化一下呢？<br>招式解析:<br>首先, 在watchers中, 可以直接使用函数的字面量名称；其次, 声明immediate:true表示创建组件时立马执行一次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    searchInputValue:&#123;</span><br><span class="line">        handler: &#39;fetchPostList&#39;,</span><br><span class="line">        immediate: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="第二招-一劳永逸的组件注册"><a href="#第二招-一劳永逸的组件注册" class="headerlink" title="第二招: 一劳永逸的组件注册"></a>第二招: 一劳永逸的组件注册</h1><p>场景还原:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import BaseButton from &#39;.&#x2F;baseButton&#39;</span><br><span class="line">import BaseIcon from &#39;.&#x2F;baseIcon&#39;</span><br><span class="line">import BaseInput from &#39;.&#x2F;baseInput&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    BaseButton,</span><br><span class="line">    BaseIcon,</span><br><span class="line">    BaseInput</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;BaseInput v-model&#x3D;&quot;searchText&quot; @keydown.enter&#x3D;&quot;search&quot;&#x2F;&gt;</span><br><span class="line">&lt;BaseButton @click&#x3D;&quot;search&quot;&gt;</span><br><span class="line">  &lt;BaseIcon name&#x3D;&quot;search&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;BaseButton&gt;</span><br></pre></td></tr></table></figure>
+<p>我们写了一堆基础UI组件, 然后每次我们需要使用这些组件的时候, 都得先import, 然后声明components, 很繁琐！秉持能偷懒就偷懒的原则, 我们要想办法优化！<br>招式解析:<br>我们需要借助一下神器webpack, 使用 require.context() 方法来创建自己的（模块）上下文, 从而实现自动动态require组件。这个方法需要3个参数: 要搜索的文件夹目录, 是否还应该搜索它的子目录, 以及一个匹配文件的正则表达式。<br>我们在components文件夹添加一个叫global.js的文件, 在这个文件里借助webpack动态将需要的基础组件统统打包进来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line"></span><br><span class="line">function capitalizeFirstLetter(string) &#123;</span><br><span class="line">  return string.charAt(0).toUpperCase() + string.slice(1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const requireComponent &#x3D; require.context(</span><br><span class="line">  &#39;.&#39;, false, &#x2F;\.vue$&#x2F;</span><br><span class="line">   &#x2F;&#x2F; 找到components文件夹下以.vue命名的文件</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">requireComponent.keys().forEach(fileName &#x3D;&gt; &#123;</span><br><span class="line">  const componentConfig &#x3D; requireComponent(fileName)</span><br><span class="line"></span><br><span class="line">  const componentName &#x3D; capitalizeFirstLetter(</span><br><span class="line">    fileName.replace(&#x2F;^\.\&#x2F;&#x2F;, &#39;&#39;).replace(&#x2F;\.\w+$&#x2F;, &#39;&#39;)</span><br><span class="line">    &#x2F;&#x2F; 因为得到的filename格式是: &#39;.&#x2F;baseButton.vue&#39;, 所以这里我们去掉头和尾, 只保留真正的文件名</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  Vue.component(componentName, componentConfig.default || componentConfig)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>最后我们在main.js中import ‘components/global.js’, 然后我们就可以随时随地使用这些基础组件, 无需手动引入了。</p>
+<h1 id="第三招-釜底抽薪的router-key"><a href="#第三招-釜底抽薪的router-key" class="headerlink" title="第三招: 釜底抽薪的router key"></a>第三招: 釜底抽薪的router key</h1><p>场景还原:<br>下面这个场景真的是伤透了很多程序员的心…先默认大家用的是Vue-router来实现路由的控制。<br>假设我们在写一个博客网站, 需求是从/post-page/a, 跳转到/post-page/b。然后我们惊人的发现, 页面跳转后数据竟然没更新？！原因是vue-router”智能地”发现这是同一个组件, 然后它就决定要复用这个组件, 所以你在created函数里写的方法压根就没执行。通常的解决方案是监听route的变化来初始化数据, 如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    loading: false,</span><br><span class="line">    error: null,</span><br><span class="line">    post: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, </span><br><span class="line">watch: &#123;</span><br><span class="line">  &#39;$route&#39;: &#123;</span><br><span class="line">    handler: &#39;resetData&#39;,</span><br><span class="line">    immediate: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  resetData() &#123;</span><br><span class="line">    this.loading &#x3D; false</span><br><span class="line">    this.error &#x3D; null</span><br><span class="line">    this.post &#x3D; null</span><br><span class="line">    this.getPost(this.$route.params.id)</span><br><span class="line">  &#125;,</span><br><span class="line">  getPost(id)&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>bug是解决了, 可每次这么写也太不优雅了吧？秉持着能偷懒则偷懒的原则, 我们希望代码这样写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    loading: false,</span><br><span class="line">    error: null,</span><br><span class="line">    post: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">created () &#123;</span><br><span class="line">  this.getPost(this.$route.params.id)</span><br><span class="line">&#125;,</span><br><span class="line">methods () &#123;</span><br><span class="line">  getPost(postId) &#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>招式解析:<br>那要怎么样才能实现这样的效果呢, 答案是给router-view添加一个unique的key, 这样即使是公用组件, 只要url变化了, 就一定会重新创建这个组件。（虽然损失了一丢丢性能, 但避免了无限的bug）。同时, 注意我将key直接设置为路由的完整路径, 一举两得。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-view :key&#x3D;&quot;$route.fullpath&quot;&gt;&lt;&#x2F;router-view&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="第四招-无所不能的render函数"><a href="#第四招-无所不能的render函数" class="headerlink" title="第四招: 无所不能的render函数"></a>第四招: 无所不能的render函数</h1><p>场景还原:<br>vue要求每一个组件都只能有一个根元素, 当你有多个根元素时, vue就会给你报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;li v-for&#x3D;&quot;route in routes&quot; :key&#x3D;&quot;route.name&quot;&gt;</span><br><span class="line">    &lt;router-link :to&#x3D;&quot;route&quot;&gt;</span><br><span class="line">      &#123;&#123; route.title &#125;&#125;</span><br><span class="line">    &lt;&#x2F;router-link&gt;</span><br><span class="line">  &lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> ERROR - Component template should contain exactly one root element. </span><br><span class="line">    If you are using v-if on multiple elements, use v-else-if </span><br><span class="line">    to chain them instead.</span><br></pre></td></tr></table></figure>
+<p>招式解析:<br>那有没有办法化解呢, 答案是有的, 只不过这时候我们需要使用render()函数来创建HTML, 而不是template。其实用js来生成html的好处就是极度的灵活功能强大, 而且你不需要去学习使用vue的那些功能有限的指令API, 比如v-for, v-if。（reactjs就完全丢弃了template）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">functional: true,</span><br><span class="line">render(h, &#123; props &#125;) &#123;</span><br><span class="line">  return props.routes.map(route &#x3D;&gt;</span><br><span class="line">    &lt;li key&#x3D;&#123;route.name&#125;&gt;</span><br><span class="line">      &lt;router-link to&#x3D;&#123;route&#125;&gt;</span><br><span class="line">        &#123;route.title&#125;</span><br><span class="line">      &lt;&#x2F;router-link&gt;</span><br><span class="line">    &lt;&#x2F;li&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第五招-无招胜有招的高阶组件"><a href="#第五招-无招胜有招的高阶组件" class="headerlink" title="第五招: 无招胜有招的高阶组件"></a>第五招: 无招胜有招的高阶组件</h1><p>划重点: 这一招威力无穷, 请务必掌握<br>当我们写组件的时候, 通常我们都需要从父组件传递一系列的props到子组件, 同时父组件监听子组件emit过来的一系列事件。举例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;父组件</span><br><span class="line">&lt;BaseInput </span><br><span class="line">    :value&#x3D;&quot;value&quot;</span><br><span class="line">    label&#x3D;&quot;密码&quot; </span><br><span class="line">    placeholder&#x3D;&quot;请填写密码&quot;</span><br><span class="line">    @input&#x3D;&quot;handleInput&quot;</span><br><span class="line">    @focus&#x3D;&quot;handleFocus&gt;</span><br><span class="line">&lt;&#x2F;BaseInput&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;label&gt;</span><br><span class="line">    &#123;&#123; label &#125;&#125;</span><br><span class="line">    &lt;input</span><br><span class="line">      :value&#x3D;&quot;value&quot;</span><br><span class="line">      :placeholder&#x3D;&quot;placeholder&quot;</span><br><span class="line">      @focus&#x3D;$emit(&#39;focus&#39;, $event)&quot;</span><br><span class="line">      @input&#x3D;&quot;$emit(&#39;input&#39;, $event.target.value)&quot;</span><br><span class="line">    &gt;</span><br><span class="line">  &lt;&#x2F;label&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br></pre></td></tr></table></figure>
+<p>有下面几个优化点:</p>
+<ul>
+<li><p>每一个从父组件传到子组件的props, 我们都得在子组件的Props中显式的声明才能使用。这样一来, 我们的子组件每次都需要申明一大堆props, 而类似placeholer这种dom原生的property我们其实完全可以直接从父传到子, 无需声明。方法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input</span><br><span class="line">      :value&#x3D;&quot;value&quot;</span><br><span class="line">      v-bind&#x3D;&quot;$attrs&quot;</span><br><span class="line">      @input&#x3D;&quot;$emit(&#39;input&#39;, $event.target.value)&quot;</span><br><span class="line">    &gt;</span><br></pre></td></tr></table></figure>
+<p>$attrs包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时, 这里会包含所有父作用域的绑定, 并且可以通过 v-bind=”$attrs” 传入内部组件——在创建更高层次的组件时非常有用。</p>
+</li>
+<li><p>注意到子组件的@focus=$emit(‘focus’, $event)”其实什么都没做, 只是把event传回给父组件而已, 那其实和上面类似, 我完全没必要显式地申明:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;input :value&#x3D;&quot;value&quot; v-bind&#x3D;&quot;$attrs&quot; v-on&#x3D;&quot;listeners&quot;&gt;</span><br><span class="line"></span><br><span class="line">computed: &#123;</span><br><span class="line">  listeners() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      ...this.$listeners,</span><br><span class="line">      input: event &#x3D;&gt; </span><br><span class="line">        this.$emit(&#39;input&#39;, event.target.value)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$listeners包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=”$listeners” 传入内部组件——在创建更高层次的组件时非常有用。</p>
+</li>
+<li><p>需要注意的是, 由于我们input并不是BaseInput这个组件的根节点, 而默认情况下父作用域的不被认作 props 的特性绑定将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。所以我们需要设置inheritAttrs:false, 这些默认行为将会被去掉, 以上两点的优化才能成功。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Liu Kun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ogliu.com/2020/12/11/vueMoves/">https://ogliu.com/2020/12/11/vueMoves/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ogliu.com" target="_blank">OG-Liu's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vuejs/">vuejs</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120039.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114247.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114247.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114246.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114246.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/16/directives/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120037.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vue 自定义指令集合</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/07/git/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120038.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">耀企GIT使用规范 v2.0</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/11/26/svg/" title="轻量的多色动态 SVG 组件"><img class="cover" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228151901.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-26</div><div class="title">轻量的多色动态 SVG 组件</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114753.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Liu Kun</div><div class="author-info__description">立志如山，行道如水。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/og-liu"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:308880147@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.facebook.com/profile.php?id=100028193553269" target="_blank" title="Facebook"><i class="fab fa-facebook-square"></i></a><a class="social-icon" href="https://twitter.com/OG_Liu" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！<br>本站新成立，如有 bug 或建议，欢迎联系<a href="https://ogliu.com/about/">&nbsp;博主</a>. <br>感谢每位访客的关注！</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%8B%9B-%E5%8C%96%E7%B9%81%E4%B8%BA%E7%AE%80%E7%9A%84Watchers"><span class="toc-number">1.</span> <span class="toc-text">第一招: 化繁为简的Watchers</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%8B%9B-%E4%B8%80%E5%8A%B3%E6%B0%B8%E9%80%B8%E7%9A%84%E7%BB%84%E4%BB%B6%E6%B3%A8%E5%86%8C"><span class="toc-number">2.</span> <span class="toc-text">第二招: 一劳永逸的组件注册</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%8B%9B-%E9%87%9C%E5%BA%95%E6%8A%BD%E8%96%AA%E7%9A%84router-key"><span class="toc-number">3.</span> <span class="toc-text">第三招: 釜底抽薪的router key</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%8B%9B-%E6%97%A0%E6%89%80%E4%B8%8D%E8%83%BD%E7%9A%84render%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">第四招: 无所不能的render函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%8B%9B-%E6%97%A0%E6%8B%9B%E8%83%9C%E6%9C%89%E6%8B%9B%E7%9A%84%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">第五招: 无招胜有招的高阶组件</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/17/picgo/" title="五分钟搭建免费cdn加速图床"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228111840.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="五分钟搭建免费cdn加速图床"/></a><div class="content"><a class="title" href="/2020/12/17/picgo/" title="五分钟搭建免费cdn加速图床">五分钟搭建免费cdn加速图床</a><time datetime="2020-12-17T06:16:04.000Z" title="发表于 2020-12-17 14:16:04">2020-12-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/16/directives/" title="Vue 自定义指令集合"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120037.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue 自定义指令集合"/></a><div class="content"><a class="title" href="/2020/12/16/directives/" title="Vue 自定义指令集合">Vue 自定义指令集合</a><time datetime="2020-12-16T08:11:21.000Z" title="发表于 2020-12-16 16:11:21">2020-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/11/vueMoves/" title="五招让你成为Vue.js大师"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120039.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="五招让你成为Vue.js大师"/></a><div class="content"><a class="title" href="/2020/12/11/vueMoves/" title="五招让你成为Vue.js大师">五招让你成为Vue.js大师</a><time datetime="2020-12-11T01:41:08.000Z" title="发表于 2020-12-11 09:41:08">2020-12-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/07/git/" title="耀企GIT使用规范 v2.0"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228120038.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="耀企GIT使用规范 v2.0"/></a><div class="content"><a class="title" href="/2020/12/07/git/" title="耀企GIT使用规范 v2.0">耀企GIT使用规范 v2.0</a><time datetime="2020-12-07T07:07:43.000Z" title="发表于 2020-12-07 15:07:43">2020-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/07/blogSeries2/" title="个人博客搭建与部署 (二)"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="个人博客搭建与部署 (二)"/></a><div class="content"><a class="title" href="/2020/12/07/blogSeries2/" title="个人博客搭建与部署 (二)">个人博客搭建与部署 (二)</a><time datetime="2020-12-07T05:47:13.000Z" title="发表于 2020-12-07 13:47:13">2020-12-07</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Liu Kun</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://ogliu.com">blog</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>鄂ICP备19025890号-2</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'Jwa98WOzoWU6xGAzUUQy5ywr-gzGzoHsz',
+      appKey: 'okmKND4p4hQEz6pSX71PDYme',
+      placeholder: 'Valine 目前使用的是Gravatar 作为评论列表头像。请自行登录或注册Gravatar，然后修改自己的头像。评论的时候，留下在Gravatar注册时所使用的邮箱即可。若留下网址, 评论成功后点击评论昵称即可跳转到对应网址。',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: 'https://jwa98woz.lc-cn-n1-shared.com',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>
