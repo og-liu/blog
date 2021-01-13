@@ -15,12 +15,12 @@
           
           <category> 教程 </category>
           
-          <category> 工具 </category>
-          
       </categories>
       
       
         <tags>
+            
+            <tag> 工具 </tag>
             
             <tag> Chrome </tag>
             
@@ -225,12 +225,14 @@
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 文档 </category>
           
       </categories>
       
       
         <tags>
+            
+            <tag> 工具 </tag>
             
             <tag> vuejs </tag>
             
