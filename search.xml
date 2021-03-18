@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>2021 Web前端开发入坑指南(上篇)</title>
+      <link href="2021/03/17/Q-A/"/>
+      <url>2021/03/17/Q-A/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h1><p>近日偶然间入了一个 <code>全栈架构师</code> 的微信群，可明明是 <code>全栈架构师</code> 的群，可里面讨论、交流的却是极度 <code>小白</code> 的问题，可能是群主推广的问题吧，经过几天的交流我发现，大家讨论的比较多的问题都与前端如何上手有关，对前端市场的不明确，对前端技术栈的迷茫等等，让我回想起多年前我刚步入前端开发的场景与心情，于是我决定，专门写一篇，前端从 0 到 1 相关问题的博文，以一个过来人的身份，来给大家做个引路人，希望大家不会像我从业一样 <code>山路十八弯</code>。</p><h1 id="Q-amp-A-（本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）"><a href="#Q-amp-A-（本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）" class="headerlink" title="Q &amp; A （本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）"></a>Q &amp; A （本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）</h1><blockquote><p>有些部分是针对对前端完全不了解的新人来讨论的，如果已经有所了解的同学可以直接跳过，文笔不好、原创码字，老鸟勿喷，谢谢！</p></blockquote><h3 id="问题-1：什么是前端？"><a href="#问题-1：什么是前端？" class="headerlink" title="问题 1：什么是前端？"></a>问题 1：什么是前端？</h3><p>什么是前端？前端的定位如何？ 首先得说说这个 <code>网站建设</code> / <code>Web开发</code>，顾名思义，就是做一个网站（最初是没有移动端、小程序的），大致流程如下：</p><ol><li>产品（老板）设计原型图（草稿），与客户洽谈；</li><li>谈妥了之后，设计师按照原型做设计图；</li><li>设计定稿了之后，设计图交由前端开发制作网页；</li><li>后端设计数据库，接口，与前端对接数据；</li><li>测试工程师测试网页或者功能是否正常满足预期；</li><li>项目上线发布；</li></ol><p>由此看出，<code>前端开发工程师</code>，是处于 <code>网站建设</code> 的一部分，一个项目，应该是由一个开发团队功能推进的，与之搭档的应该还有: 产品经理、设计师、后端开发工程师、测试工程师、运维工程师等，至此，你应该已经了解前端的基本定位，或许还不是很明确，我们继续说说前端与后端的区别: </p><ul><li>浏览器展示的网页，以及网页上的交互（特效）等等，由前端完成;</li><li>网页上的数据，举例: 登录的账号密码、商城的产品价格或库存等等，由后端数据库提供;</li><li>用大白话说就是前端负责展示，后端负责提供与维护数据，而前端从后端获取数据并展示出来则称为前后端对接；</li></ul><h3 id="问题-2-为什么很多公司招-H5-跟前端有什么区别吗？"><a href="#问题-2-为什么很多公司招-H5-跟前端有什么区别吗？" class="headerlink" title="问题 2: 为什么很多公司招 H5, 跟前端有什么区别吗？"></a>问题 2: 为什么很多公司招 H5, 跟前端有什么区别吗？</h3><p><code>H5</code> 即 <code>HTML 5</code> 是 <code>HTML</code> 的一个版本，是 <code>网页开发</code> 的一个基础语言，具有里程碑意义，在 <code>H5</code> 出现之前，还没有 <code>前端</code> 这个词汇，当时做网页开发的被称为 <code>网页制作</code>，俗称 <code>切图仔</code>， 而 <code>H5</code> 出现以后移动互联网同时也火了，因为移动端没有万恶的 <code>IE</code> 浏览器，对 <code>H5</code> 的支持非常好，所以被广泛的应用在移动端开发，所以很多招聘信息招移动端开发，都称为 招 <code>H5</code>，实际上这时候他们所说的 <code>H5</code> 已经是 <code>HTML 5</code>、 <code>CSS 3</code>、<code>javascript</code>的集合，而不是单纯的说 <code>HTML 5</code> 这一门语言。<code>H5</code> 是前端的一部分！</p><h3 id="问题-3-前端现状如何？"><a href="#问题-3-前端现状如何？" class="headerlink" title="问题 3 前端现状如何？"></a>问题 3 前端现状如何？</h3><ul><li>最初的 <code>网页制作</code> 后来发展成 <code>前端工程师</code>、甚至因为 <code>nodejs</code> 的出现，可扩展到 <code>全栈工程师</code>, 所以前端相较后端来说，发展上限更高；</li><li>技术更迭快, 技术面越来越广, 各种ES（JS）版本、各种构建工具、企业级框架，<code>混合APP</code>, <code>微信小程序</code>, 百花缭乱, 如果不明确发展路线, 很容易走弯路；</li><li>由于上一点，导致现在市面上的初级前端泛滥、中高级稀缺，大部分应届生出来干不了多久就 <code>迷路</code> 了, 能找回来的寥寥无几，能突破技术瓶颈上升高级工程师的更是少之又少；</li><li>合久必分，前端现在已经包罗万象，涉及面太广，技术栈量太大，所以必然会分流出几条发展路线。</li><li>如果能保持持续学习，并能理清楚自己的发展规划，无论哪条发展路线，前端的前景都是好的（目前薪资也是客观的），但是如果只是初级就很难找工作，因为门槛低。</li></ul><h3 id="问题-4：如何高效学习？"><a href="#问题-4：如何高效学习？" class="headerlink" title="问题 4：如何高效学习？"></a>问题 4：如何高效学习？</h3><ol><li><p>选择大于努力！ </p><ul><li>理清楚技术栈，制定好学习路线，明确目的的学习</li></ul></li><li><p>费曼学习法</p><ul><li>教学式学习，将自己学到的东西尝试教给别人，同时自身加深印象，如果没有可以教得对象，可以写文章的形式来讲述，把未来看你文章的每个人都当成你的教学对象</li></ul></li><li><p>分类记忆</p><ul><li>举例：html标签太多，记不下来，我们分类记忆，块级元素有哪些、内联元素有哪些；</li></ul></li><li><p>刻意学习</p><ul><li>在学习一个知识点的时候，做好笔记梳理，以后在利用碎片时间，反复加深记忆，举例: 今天学习了一个知识点，并且做好了笔记，睡觉前、或者洗澡的时候或者任何其他脑子空闲的时候，刻意回想一下，今天学习的内容，如果想不起来，回头翻一下笔记，看看是忘记了哪一块，如此反复！</li></ul></li><li><p>项目中学习</p><ul><li>自主开发一个项目，一点一点的开发过程中，自己就会产生很多思考，有问题就上网查，解决问题的成就感会慢慢让你对编程产生兴趣，而兴趣是最好的老师。</li></ul></li><li><p>造轮子</p><ul><li>在没有独挡一面的能力时，那就找一个模仿对象，看别人怎么写，照着写，尝试理解别人为什么这么写。</li></ul></li></ol><h3 id="问题-5：是否应该参与培训机构？"><a href="#问题-5：是否应该参与培训机构？" class="headerlink" title="问题 5：是否应该参与培训机构？"></a>问题 5：是否应该参与培训机构？</h3><blockquote><p>关于这点，也就是我个人的思考，并非打击针对哪个培训机构，如果有被冒犯到，还请谅解！</p></blockquote><p>前端相较其他的专业来说，比较特殊，知识面广，量也就多，技术更迭也快，培训机构通常都是4个多月一个班期，而4个多月时间这个课程大纲怎么安排都是很难学好的，时间不够，而且因为要系统化培训，有很多技能可能工作用不上也会列入课程大纲内，所以往往出来的学员都是知道的多，能熟练运用的技能却少，也没有实战项目的经验，工作自然难找，4个月一批，一批，又一批，所以导致市面现在已经是初级泛滥，所以我的结论是，培训机构适合一些没有人引导、自己又完全没有接触过这个行业的新人是可以考虑去的，可以入门，而自己拎得清的且自律有决心自学的，完全可以利用互联网的力量，自学成才。</p><h3 id="问题-6：学习渠道"><a href="#问题-6：学习渠道" class="headerlink" title="问题 6：学习渠道"></a>问题 6：学习渠道</h3><ol><li><p>视频教学</p><ul><li><p><a href="https://www.bilibili.com/">哔哩哔哩</a><br>内容多、杂，但免费，如果会挑的话还是能找到一些不错的教程。</p></li><li><p><a href="https://class.imooc.com/">慕课网</a><br>程序员的梦工厂，专业的教学，分类明确，<code>免费视频</code> 可入门，<code>实战视频</code>（收费）积累实战经验，目前还有3门与前端相关的 <code>体系课程</code>，分别是 <code>前端工程师</code>，<code>大前端</code>，<code>Web前端架构师</code>，可根据自身情况考虑选择，收费较高，类似培训机构。</p></li></ul></li><li><p>各大程序员聚集的社区网站, 上面有很多优质的文章，以及系列课程。(排名不分先后)</p><ul><li><a href="https://www.zhihu.com/">知乎</a></li><li><a href="https://juejin.cn/">掘金</a></li><li><a href="https://www.jianshu.com/">简书</a></li><li><a href="https://segmentfault.com/">思否 / SegmentFault</a></li><li><a href="https://www.csdn.net/">CSDN</a></li><li>…</li></ul></li><li><p>官方文档，看文档比看视频来得更快，网上很多文章，或者教程都是基于官方文档衍生出来的，所以学习时应该详细的阅读对应的官方文档，举例：学 <code>vue</code> 就看 <code>vue</code> 的文档，反复看！</p></li><li><p><a href="https://github.com/">Github</a>，参考别人的项目源码，分析别人的代码，这需要一定的代码阅读能力。</p></li></ol><h3 id="问题-7：前端技术栈的分流？什么重点学，什么技术了解即可"><a href="#问题-7：前端技术栈的分流？什么重点学，什么技术了解即可" class="headerlink" title="问题 7：前端技术栈的分流？什么重点学，什么技术了解即可?"></a>问题 7：前端技术栈的分流？什么重点学，什么技术了解即可?</h3><ol><li><p>HTML、CSS，没什么好说的，这两项基础必须熟练掌握。</p></li><li><p>JavaScript / ECMAScript 6， 如果现在入坑前端，推荐直接从 <code>ES6</code> 起步，以免被 JavaScript（实际上是一个东西，版本不一样而已）的一些麻烦点给绕坑里，打击到信心，例如: 闭包、地狱回调、原型链等等，实际上这些坑大部分在新版本里已经有新的 <code>语法糖</code> 或是 <code>API</code>  或是其他新特性给解决了，新人应该以快速上手工作为主，直接学习 <code>ES6</code>，工作之后再慢慢回头看这些问题，提升编程思想。关于 <code>JavaScript</code> 和 <code>ECMAScript</code> 之间的关系如果还不是很清楚的同学，可以参考 <code>阮一峰</code> 老师的 <a href="https://es6.ruanyifeng.com/#docs/intro">《ECMAScript 6 入门》</a> 一书中的 <code>ECMAScript 6 简介</code>。</p></li><li><p>jQuey 了解即可，现阶段还用 jQuery 的公司，应该是讲求效率要快，而且项目对性能要求并不高，因为 jQuery 插件库庞大，现成的插件多，可以拆箱即用，正常情况下，jQuery 因为没有模块化，已经逐渐被淘汰了。</p></li><li><p>框架, 三选一，推荐 <code>Vue</code>，轻量级、社区活跃，上手相对容易很多，其次推荐 <code>React</code>，学好其中一种框架以及涉及的核心插件，例如：vue-router、vuex等，既可找到对应技术栈的公司工作。搭配学习的还有主流的 UI 框架，框架的脚手架配置最好也做一些了解。</p><ul><li>Vue</li><li>React</li><li>Angela</li></ul></li><li><p>工程化构建工具，有很多种，这里只列出相对流行的几种，新手选择一种学习即可，推荐 <code>Webpack</code>，如果对项目工程化感兴趣，可以深入学习，向 <code>前端架构师</code> 方向发展。</p><ul><li>Webpack</li><li>Gulp</li><li>Grunt</li><li>Browserify</li></ul></li><li><p>nodejs，新手入门建议了解即可，基础牢固稳定之后可以扩展学习，向 <code>全栈</code> 尝试。</p></li><li><p>微信小程序、公众号，建议要么专攻要么放弃，如果专攻 <code>微信开发</code>，上述内容都可以暂时不学，关联性不大。</p></li><li><p>React Native，移动端开发的重磅框架，与其类似的框架还有很多，如果专攻 <code>移动端开发</code> 的同学，可以根据实际情况选择性的学习.</p></li></ol><p><strong>上述内容, 我们可以分析得出结论: 当前的 <code>大前端时代</code>, 至少有以下几个方向可以发展:</strong></p><ol><li>业务型前端工程师，比较初级，会基础、会用框架写业务代码即可，入门首选。</li><li>全栈工程师，前后端通吃。</li><li>前端架构师，主攻性能提升，底层架构。</li><li>微信开发</li><li>移动端开发</li></ol><p><strong>发展规划选择有以下几种，数字对应上文序号:</strong></p><ul><li>1 &gt; 2 &gt; 3 按顺序逐步升级</li><li>5 &gt; 4</li><li>4</li><li>5</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>npm 包开发指南</title>
       <link href="2021/02/07/npmPackages/"/>
       <url>2021/02/07/npmPackages/</url>
@@ -291,6 +304,25 @@
             <tag> vuejs </tag>
             
             <tag> packages </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>watch 中的引号</title>
+      <link href="2020/03/10/vWatch/"/>
+      <url>2020/03/10/vWatch/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>在 vuejs 项目中, 免不了使用 watch, 而在我们项目代码中经常看到 watch 监听的属性部分，有些有引号，有些没引号，甚至有些不用引号不行，官方文档没有详细说明这个引号的作用，所以很多人弄不清楚它又什么作用。</p></blockquote><h1 id="对象具体属性的-watch-可以直接用引号把属性括起来，就可以实现对象中特定属性的监听事件"><a href="#对象具体属性的-watch-可以直接用引号把属性括起来，就可以实现对象中特定属性的监听事件" class="headerlink" title="对象具体属性的 watch 可以直接用引号把属性括起来，就可以实现对象中特定属性的监听事件"></a>对象具体属性的 watch 可以直接用引号把属性括起来，就可以实现对象中特定属性的监听事件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">   &#39;queryData.name&#39;: &#123;</span><br><span class="line">     handler: function() &#123;</span><br><span class="line">      &#x2F;&#x2F;do something</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 小贴士 </tag>
             
         </tags>
       
