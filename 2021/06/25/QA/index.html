@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2021 Web前端开发入坑指南(上篇) | OG-Liu's Blog</title><meta name="author" content="Liu Kun"><meta name="copyright" content="Liu Kun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="前景近日偶然间入了一个 全栈架构师 的微信群，可明明是 全栈架构师 的群，可里面讨论、交流的却是极度 小白 的问题，可能是群主推广的问题吧，经过几天的交流我发现，大家讨论的比较多的问题都与前端如何上手有关，对前端市场的不明确，对前端技术栈的迷茫等等，让我回想起多年前我刚步入前端开发的场景与心情，于是我决定，专门写一篇，前端从 0 到 1 相关问题的博文，以一个过来人的身份，来给大家做个引路人，希望">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021 Web前端开发入坑指南(上篇)">
+<meta property="og:url" content="https://ogliu.com/2021/06/25/QA/index.html">
+<meta property="og:site_name" content="OG-Liu&#39;s Blog">
+<meta property="og:description" content="前景近日偶然间入了一个 全栈架构师 的微信群，可明明是 全栈架构师 的群，可里面讨论、交流的却是极度 小白 的问题，可能是群主推广的问题吧，经过几天的交流我发现，大家讨论的比较多的问题都与前端如何上手有关，对前端市场的不明确，对前端技术栈的迷茫等等，让我回想起多年前我刚步入前端开发的场景与心情，于是我决定，专门写一篇，前端从 0 到 1 相关问题的博文，以一个过来人的身份，来给大家做个引路人，希望">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210317165503.jpg">
+<meta property="article:published_time" content="2021-06-25T08:49:23.000Z">
+<meta property="article:modified_time" content="2021-06-25T07:22:09.347Z">
+<meta property="article:author" content="Liu Kun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210317165503.jpg"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="https://ogliu.com/2021/06/25/QA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-25 15:22:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"><style> div.daodream-powered-by, div#daodream-launcher{display:none!important}; </style><meta name="generator" content="Hexo 5.2.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114753.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/og-liu/image-host/20210317165503.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">OG-Liu's Blog</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">2021 Web前端开发入坑指南(上篇)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-06-25T08:49:23.000Z" title="发表于 2021-06-25 16:49:23">2021-06-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-25T07:22:09.347Z" title="更新于 2021-06-25 15:22:09">2021-06-25</time></span></div><div class="meta-secondline"> </div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h1><p>近日偶然间入了一个 <code>全栈架构师</code> 的微信群，可明明是 <code>全栈架构师</code> 的群，可里面讨论、交流的却是极度 <code>小白</code> 的问题，可能是群主推广的问题吧，经过几天的交流我发现，大家讨论的比较多的问题都与前端如何上手有关，对前端市场的不明确，对前端技术栈的迷茫等等，让我回想起多年前我刚步入前端开发的场景与心情，于是我决定，专门写一篇，前端从 0 到 1 相关问题的博文，以一个过来人的身份，来给大家做个引路人，希望大家不会像我从业一样 <code>山路十八弯</code>。</p>
+<h1 id="Q-amp-A-（本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）"><a href="#Q-amp-A-（本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）" class="headerlink" title="Q &amp; A （本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）"></a>Q &amp; A （本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）</h1><blockquote>
+<p>有些部分是针对对前端完全不了解的新人来讨论的，如果已经有所了解的同学可以直接跳过，文笔不好、原创码字，老鸟勿喷，谢谢！</p>
+</blockquote>
+<h3 id="问题-1：什么是前端？"><a href="#问题-1：什么是前端？" class="headerlink" title="问题 1：什么是前端？"></a>问题 1：什么是前端？</h3><p>什么是前端？前端的定位如何？ 首先得说说这个 <code>网站建设</code> / <code>Web开发</code>，顾名思义，就是做一个网站（最初是没有移动端、小程序的），大致流程如下：</p>
+<ol>
+<li>产品（老板）设计原型图（草稿），与客户洽谈；</li>
+<li>谈妥了之后，设计师按照原型做设计图；</li>
+<li>设计定稿了之后，设计图交由前端开发制作网页；</li>
+<li>后端设计数据库，接口，与前端对接数据；</li>
+<li>测试工程师测试网页或者功能是否正常满足预期；</li>
+<li>项目上线发布；</li>
+</ol>
+<p>由此看出，<code>前端开发工程师</code>，是处于 <code>网站建设</code> 的一部分，一个项目，应该是由一个开发团队功能推进的，与之搭档的应该还有: 产品经理、设计师、后端开发工程师、测试工程师、运维工程师等，至此，你应该已经了解前端的基本定位，或许还不是很明确，我们继续说说前端与后端的区别:</p>
+<ul>
+<li>浏览器展示的网页，以及网页上的交互（特效）等等，由前端完成;</li>
+<li>网页上的数据，举例: 登录的账号密码、商城的产品价格或库存等等，由后端数据库提供;</li>
+<li>用大白话说就是前端负责展示，后端负责提供与维护数据，而前端从后端获取数据并展示出来则称为前后端对接；</li>
+</ul>
+<h3 id="问题-2-为什么很多公司招-H5-跟前端有什么区别吗？"><a href="#问题-2-为什么很多公司招-H5-跟前端有什么区别吗？" class="headerlink" title="问题 2: 为什么很多公司招 H5, 跟前端有什么区别吗？"></a>问题 2: 为什么很多公司招 H5, 跟前端有什么区别吗？</h3><p><code>H5</code> 即 <code>HTML 5</code> 是 <code>HTML</code> 的一个版本，是 <code>网页开发</code> 的一个基础语言，具有里程碑意义，在 <code>H5</code> 出现之前，还没有 <code>前端</code> 这个词汇，当时做网页开发的被称为 <code>网页制作</code>，俗称 <code>切图仔</code>， 而 <code>H5</code> 出现以后移动互联网同时也火了，因为移动端没有万恶的 <code>IE</code> 浏览器，对 <code>H5</code> 的支持非常好，所以被广泛的应用在移动端开发，所以很多招聘信息招移动端开发，都称为 招 <code>H5</code>，实际上这时候他们所说的 <code>H5</code> 已经是 <code>HTML 5</code>、 <code>CSS 3</code>、<code>javascript</code>的集合，而不是单纯的说 <code>HTML 5</code> 这一门语言。<code>H5</code> 是前端的一部分！</p>
+<h3 id="问题-3-前端现状如何？"><a href="#问题-3-前端现状如何？" class="headerlink" title="问题 3 前端现状如何？"></a>问题 3 前端现状如何？</h3><ul>
+<li>最初的 <code>网页制作</code> 后来发展成 <code>前端工程师</code>、甚至因为 <code>nodejs</code> 的出现，可扩展到 <code>全栈工程师</code>, 所以前端相较后端来说，发展上限更高；</li>
+<li>技术更迭快, 技术面越来越广, 各种ES（JS）版本、各种构建工具、企业级框架，<code>混合APP</code>, <code>微信小程序</code>, 百花缭乱, 如果不明确发展路线, 很容易走弯路；</li>
+<li>由于上一点，导致现在市面上的初级前端泛滥、中高级稀缺，大部分应届生出来干不了多久就 <code>迷路</code> 了, 能找回来的寥寥无几，能突破技术瓶颈上升高级工程师的更是少之又少；</li>
+<li>合久必分，前端现在已经包罗万象，涉及面太广，技术栈量太大，所以必然会分流出几条发展路线。</li>
+<li>如果能保持持续学习，并能理清楚自己的发展规划，无论哪条发展路线，前端的前景都是好的（目前薪资也是客观的），但是如果只是初级就很难找工作，因为门槛低。</li>
+</ul>
+<h3 id="问题-4：如何高效学习？"><a href="#问题-4：如何高效学习？" class="headerlink" title="问题 4：如何高效学习？"></a>问题 4：如何高效学习？</h3><ol>
+<li><p>选择大于努力！</p>
+<ul>
+<li>理清楚技术栈，制定好学习路线，明确目的的学习</li>
+</ul>
+</li>
+<li><p>费曼学习法</p>
+<ul>
+<li>教学式学习，将自己学到的东西尝试教给别人，同时自身加深印象，如果没有可以教得对象，可以写文章的形式来讲述，把未来看你文章的每个人都当成你的教学对象</li>
+</ul>
+</li>
+<li><p>分类记忆</p>
+<ul>
+<li>举例：html标签太多，记不下来，我们分类记忆，块级元素有哪些、内联元素有哪些；</li>
+</ul>
+</li>
+<li><p>刻意学习</p>
+<ul>
+<li>在学习一个知识点的时候，做好笔记梳理，以后在利用碎片时间，反复加深记忆，举例: 今天学习了一个知识点，并且做好了笔记，睡觉前、或者洗澡的时候或者任何其他脑子空闲的时候，刻意回想一下，今天学习的内容，如果想不起来，回头翻一下笔记，看看是忘记了哪一块，如此反复！</li>
+</ul>
+</li>
+<li><p>项目中学习</p>
+<ul>
+<li>自主开发一个项目，一点一点的开发过程中，自己就会产生很多思考，有问题就上网查，解决问题的成就感会慢慢让你对编程产生兴趣，而兴趣是最好的老师。</li>
+</ul>
+</li>
+<li><p>造轮子</p>
+<ul>
+<li>在没有独挡一面的能力时，那就找一个模仿对象，看别人怎么写，照着写，尝试理解别人为什么这么写。</li>
+</ul>
+</li>
+</ol>
+<h3 id="问题-5：是否应该参与培训机构？"><a href="#问题-5：是否应该参与培训机构？" class="headerlink" title="问题 5：是否应该参与培训机构？"></a>问题 5：是否应该参与培训机构？</h3><blockquote>
+<p>关于这点，也就是我个人的思考，并非打击针对哪个培训机构，如果有被冒犯到，还请谅解！</p>
+</blockquote>
+<p>前端相较其他的专业来说，比较特殊，知识面广，量也就多，技术更迭也快，培训机构通常都是4个多月一个班期，而4个多月时间这个课程大纲怎么安排都是很难学好的，时间不够，而且因为要系统化培训，有很多技能可能工作用不上也会列入课程大纲内，所以往往出来的学员都是知道的多，能熟练运用的技能却少，也没有实战项目的经验，工作自然难找，4个月一批，一批，又一批，所以导致市面现在已经是初级泛滥，所以我的结论是，培训机构适合一些没有人引导、自己又完全没有接触过这个行业的新人是可以考虑去的，可以入门，而自己拎得清的且自律有决心自学的，完全可以利用互联网的力量，自学成才。</p>
+<h3 id="问题-6：学习渠道"><a href="#问题-6：学习渠道" class="headerlink" title="问题 6：学习渠道"></a>问题 6：学习渠道</h3><ol>
+<li><p>视频教学</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/">哔哩哔哩</a><br>内容多、杂，但免费，如果会挑的话还是能找到一些不错的教程。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://class.imooc.com/">慕课网</a><br>程序员的梦工厂，专业的教学，分类明确，<code>免费视频</code> 可入门，<code>实战视频</code>（收费）积累实战经验，目前还有3门与前端相关的 <code>体系课程</code>，分别是 <code>前端工程师</code>，<code>大前端</code>，<code>Web前端架构师</code>，可根据自身情况考虑选择，收费较高，类似培训机构。</p>
+</li>
+</ul>
+</li>
+<li><p>各大程序员聚集的社区网站, 上面有很多优质的文章，以及系列课程。(排名不分先后)</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/">知乎</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/">掘金</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/">简书</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/">思否 / SegmentFault</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.csdn.net/">CSDN</a></li>
+<li>…</li>
+</ul>
+</li>
+<li><p>官方文档，看文档比看视频来得更快，网上很多文章，或者教程都是基于官方文档衍生出来的，所以学习时应该详细的阅读对应的官方文档，举例：学 <code>vue</code> 就看 <code>vue</code> 的文档，反复看！</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/">Github</a>，参考别人的项目源码，分析别人的代码，这需要一定的代码阅读能力。</p>
+</li>
+</ol>
+<h3 id="问题-7：前端技术栈的分流？什么重点学，什么技术了解即可"><a href="#问题-7：前端技术栈的分流？什么重点学，什么技术了解即可" class="headerlink" title="问题 7：前端技术栈的分流？什么重点学，什么技术了解即可?"></a>问题 7：前端技术栈的分流？什么重点学，什么技术了解即可?</h3><ol>
+<li><p>HTML、CSS，没什么好说的，这两项基础必须熟练掌握。</p>
+</li>
+<li><p>JavaScript / ECMAScript 6， 如果现在入坑前端，推荐直接从 <code>ES6</code> 起步，以免被 JavaScript（实际上是一个东西，版本不一样而已）的一些麻烦点给绕坑里，打击到信心，例如: 闭包、地狱回调、原型链等等，实际上这些坑大部分在新版本里已经有新的 <code>语法糖</code> 或是 <code>API</code>  或是其他新特性给解决了，新人应该以快速上手工作为主，直接学习 <code>ES6</code>，工作之后再慢慢回头看这些问题，提升编程思想。关于 <code>JavaScript</code> 和 <code>ECMAScript</code> 之间的关系如果还不是很清楚的同学，可以参考 <code>阮一峰</code> 老师的 <a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/intro">《ECMAScript 6 入门》</a> 一书中的 <code>ECMAScript 6 简介</code>。</p>
+</li>
+<li><p>jQuey 了解即可，现阶段还用 jQuery 的公司，应该是讲求效率要快，而且项目对性能要求并不高，因为 jQuery 插件库庞大，现成的插件多，可以拆箱即用，正常情况下，jQuery 因为没有模块化，已经逐渐被淘汰了。</p>
+</li>
+<li><p>框架, 三选一，推荐 <code>Vue</code>，轻量级、社区活跃，上手相对容易很多，其次推荐 <code>React</code>，学好其中一种框架以及涉及的核心插件，例如：vue-router、vuex等，既可找到对应技术栈的公司工作。搭配学习的还有主流的 UI 框架，框架的脚手架配置最好也做一些了解。</p>
+<ul>
+<li>Vue</li>
+<li>React</li>
+<li>Angela</li>
+</ul>
+</li>
+<li><p>工程化构建工具，有很多种，这里只列出相对流行的几种，新手选择一种学习即可，推荐 <code>Webpack</code>，如果对项目工程化感兴趣，可以深入学习，向 <code>前端架构师</code> 方向发展。</p>
+<ul>
+<li>Webpack</li>
+<li>Gulp</li>
+<li>Grunt</li>
+<li>Browserify</li>
+</ul>
+</li>
+<li><p>nodejs，新手入门建议了解即可，基础牢固稳定之后可以扩展学习，向 <code>全栈</code> 尝试。</p>
+</li>
+<li><p>微信小程序、公众号，建议要么专攻要么放弃，如果专攻 <code>微信开发</code>，上述内容都可以暂时不学，关联性不大。</p>
+</li>
+<li><p>React Native，移动端开发的重磅框架，与其类似的框架还有很多，如果专攻 <code>移动端开发</code> 的同学，可以根据实际情况选择性的学习.</p>
+</li>
+</ol>
+<p><strong>上述内容, 我们可以分析得出结论: 当前的 <code>大前端时代</code>, 至少有以下几个方向可以发展:</strong></p>
+<ol>
+<li>业务型前端工程师，比较初级，会基础、会用框架写业务代码即可，入门首选。</li>
+<li>全栈工程师，前后端通吃。</li>
+<li>前端架构师，主攻性能提升，底层架构。</li>
+<li>微信开发</li>
+<li>移动端开发</li>
+</ol>
+<p><strong>发展规划选择有以下几种，数字对应上文序号:</strong></p>
+<ul>
+<li>1 &gt; 2 &gt; 3 按顺序逐步升级</li>
+<li>5 &gt; 4</li>
+<li>4</li>
+<li>5</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Liu Kun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://ogliu.com/2021/06/25/QA/">https://ogliu.com/2021/06/25/QA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://ogliu.com" target="_blank">OG-Liu's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210317165503.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114247.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114247.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114246.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114246.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/05/26/OptionalChaining/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210526154652.jpeg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">彻底告别 Cannot read property *** of undefined</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20201228114753.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Liu Kun</div><div class="author-info__description">立志如山，行道如水。</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/og-liu"><i class="fab fa-github"></i><span>Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:308880147@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.facebook.com/profile.php?id=100028193553269" target="_blank" title="Facebook"><i class="fab fa-facebook-square"></i></a><a class="social-icon" href="https://twitter.com/OG_Liu" target="_blank" title="Twitter"><i class="fab fa-twitter-square"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！<br>本站新成立，如有 bug 或建议，欢迎联系<a href="https://ogliu.com/about/">&nbsp;博主</a>. <br>感谢每位访客的关注！</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">前景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Q-amp-A-%EF%BC%88%E6%9C%AC%E6%96%87%E4%BB%A5%E9%97%AE%E7%AD%94%E5%BD%A2%E5%BC%8F%E6%9D%A5%E6%8E%A2%E8%AE%A8%E5%89%8D%E7%AB%AF%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A6%82%E6%9C%89%E8%A1%A5%E5%85%85%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E7%95%99%E4%B8%8B%E3%80%82%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">Q &amp; A （本文以问答形式来探讨前端问题，如有补充问题，可在评论区留下。）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%AB%AF%EF%BC%9F"><span class="toc-number">2.0.1.</span> <span class="toc-text">问题 1：什么是前端？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BE%88%E5%A4%9A%E5%85%AC%E5%8F%B8%E6%8B%9B-H5-%E8%B7%9F%E5%89%8D%E7%AB%AF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%90%97%EF%BC%9F"><span class="toc-number">2.0.2.</span> <span class="toc-text">问题 2: 为什么很多公司招 H5, 跟前端有什么区别吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-3-%E5%89%8D%E7%AB%AF%E7%8E%B0%E7%8A%B6%E5%A6%82%E4%BD%95%EF%BC%9F"><span class="toc-number">2.0.3.</span> <span class="toc-text">问题 3 前端现状如何？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-4%EF%BC%9A%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%EF%BC%9F"><span class="toc-number">2.0.4.</span> <span class="toc-text">问题 4：如何高效学习？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-5%EF%BC%9A%E6%98%AF%E5%90%A6%E5%BA%94%E8%AF%A5%E5%8F%82%E4%B8%8E%E5%9F%B9%E8%AE%AD%E6%9C%BA%E6%9E%84%EF%BC%9F"><span class="toc-number">2.0.5.</span> <span class="toc-text">问题 5：是否应该参与培训机构？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-6%EF%BC%9A%E5%AD%A6%E4%B9%A0%E6%B8%A0%E9%81%93"><span class="toc-number">2.0.6.</span> <span class="toc-text">问题 6：学习渠道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98-7%EF%BC%9A%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9A%84%E5%88%86%E6%B5%81%EF%BC%9F%E4%BB%80%E4%B9%88%E9%87%8D%E7%82%B9%E5%AD%A6%EF%BC%8C%E4%BB%80%E4%B9%88%E6%8A%80%E6%9C%AF%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF"><span class="toc-number">2.0.7.</span> <span class="toc-text">问题 7：前端技术栈的分流？什么重点学，什么技术了解即可?</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/06/25/QA/" title="2021 Web前端开发入坑指南(上篇)"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210317165503.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021 Web前端开发入坑指南(上篇)"/></a><div class="content"><a class="title" href="/2021/06/25/QA/" title="2021 Web前端开发入坑指南(上篇)">2021 Web前端开发入坑指南(上篇)</a><time datetime="2021-06-25T08:49:23.000Z" title="发表于 2021-06-25 16:49:23">2021-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/26/OptionalChaining/" title="彻底告别 Cannot read property *** of undefined"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210526154652.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="彻底告别 Cannot read property *** of undefined"/></a><div class="content"><a class="title" href="/2021/05/26/OptionalChaining/" title="彻底告别 Cannot read property *** of undefined">彻底告别 Cannot read property *** of undefined</a><time datetime="2021-05-25T16:00:00.000Z" title="发表于 2021-05-26 00:00:00">2021-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/25/commonjs-ES6/" title="JS模块化规范全面解读"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210325163250.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JS模块化规范全面解读"/></a><div class="content"><a class="title" href="/2021/03/25/commonjs-ES6/" title="JS模块化规范全面解读">JS模块化规范全面解读</a><time datetime="2021-03-25T08:26:23.000Z" title="发表于 2021-03-25 16:26:23">2021-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/25/acc/" title="JS 应对小数运算精度误差的解决方案"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210326144447.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JS 应对小数运算精度误差的解决方案"/></a><div class="content"><a class="title" href="/2021/03/25/acc/" title="JS 应对小数运算精度误差的解决方案">JS 应对小数运算精度误差的解决方案</a><time datetime="2021-03-25T08:26:23.000Z" title="发表于 2021-03-25 16:26:23">2021-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/23/throttle-debounce/" title="事件的节流（throttle）与防抖（debounce）"><img src="https://cdn.jsdelivr.net/gh/og-liu/image-host/20210323085654.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="事件的节流（throttle）与防抖（debounce）"/></a><div class="content"><a class="title" href="/2021/03/23/throttle-debounce/" title="事件的节流（throttle）与防抖（debounce）">事件的节流（throttle）与防抖（debounce）</a><time datetime="2021-03-23T00:49:23.000Z" title="发表于 2021-03-23 08:49:23">2021-03-23</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/index.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Liu Kun</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://ogliu.com">blog</a></div><div class="icp"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>鄂ICP备19025890号-2</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'Jwa98WOzoWU6xGAzUUQy5ywr-gzGzoHsz',
+      appKey: 'okmKND4p4hQEz6pSX71PDYme',
+      placeholder: 'Valine 目前使用的是Gravatar 作为评论列表头像。请自行登录或注册Gravatar，然后修改自己的头像。评论的时候，留下在Gravatar注册时所使用的邮箱即可。若留下网址, 评论成功后点击评论昵称即可跳转到对应网址。',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: 'https://jwa98woz.lc-cn-n1-shared.com',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol?'https:':'http:') + "//widget.daovoice.io/widget/21edf650.js","daovoice")</script><script>daovoice('init', {app_id:"21edf650"});daovoice('update');</script><script> function insertAfter(new_item, item) { item.parentNode.insertBefore(new_item, item.nextSibling); }
+var n = document.createElement('button'); var icon = document.createElement("i"); icon.classList.add('fas','fa-sms'); n.appendChild(icon);
+var i = document.getElementById('rightside_config'); insertAfter(n, i);
+n.onclick = function(){ daovoice('show') } </script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script></div></body></html>
