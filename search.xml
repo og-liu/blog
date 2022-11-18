@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>踩坑日志之 sudo 改变文件所属用户</title>
+      <link href="2022/11/18/sudo/"/>
+      <url>2022/11/18/sudo/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>　<code>MacOS</code> 使用命令行执行【创建文件】、【创建文件夹】，【npm install】等操作时，如果带了 <code>sudo</code>，会将它们的【所属用户】改成 <code>root</code>。</p></blockquote><h2 id="踩坑记录"><a href="#踩坑记录" class="headerlink" title="踩坑记录"></a>踩坑记录</h2><h4 id="根据官网文档，一步一步启动运行-Egg-js"><a href="#根据官网文档，一步一步启动运行-Egg-js" class="headerlink" title="根据官网文档，一步一步启动运行 Egg.js"></a>根据官网文档，一步一步启动运行 Egg.js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir svg-vuejs-backend &amp;&amp; cd svg-vuejs-backend</span><br><span class="line">npm init egg --type&#x3D;ts</span><br><span class="line">sudo npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure><p>报错如下:<br><img src="https://img.ogliu.com/blog/articles/permission/21D0B9C1-AEEF-441C-A0F6-A66A8281EEA2.png"><br>大概意思就是我们运行项目的时候， node_modules 需要打开某个文件夹去干某些事情，但是没有打开文件夹的权限，所以报错提示权限不足</p><h4 id="查看-node-modules-文件夹的权限"><a href="#查看-node-modules-文件夹的权限" class="headerlink" title="查看 node_modules 文件夹的权限"></a>查看 node_modules 文件夹的权限</h4><p><img src="https://img.ogliu.com/blog/articles/permission/EDDF3416-3A8E-4025-8BF8-7117A19A801D.png"><br>可以看到【所属用户】是 root，而 npm 出于安全考虑不支持以 root 用户运行，即使你用 root 用户身份运行了，npm 会自动转成一个叫 nobody 的用户来运行，而这个用户几乎没有任何权限。这样的话如果脚本里有一些需要权限的操作，比如写文件，就会崩掉。</p><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>更改 node_modules 所属用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R liukun:staff node_modules</span><br></pre></td></tr></table></figure><p>当然也可以在根源解决问题，就是在 npm install 装依赖的时候，不带上sudo，自然 node_modules 就不会变成 root 用户，也不会出现这种报错，但是有一种特殊情况，有时候我们在 npm install 时，它也会需要到写入权限，这时候不用 sudo 也会报错，所以为了避免这种情况，我们在装依赖的时候依然使用 sudo，装完依赖之后，通过命令更改 node_modules 的权限最为稳妥。</p><h4 id="关于-npm-–unsafe-perm-参数"><a href="#关于-npm-–unsafe-perm-参数" class="headerlink" title="关于 npm –unsafe-perm 参数"></a>关于 npm –unsafe-perm 参数</h4><p>npm 加 –unsafe-perm 参数，这样就不会切换到 nobody 上，运行时是哪个用户就是哪个用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --unsafe-perm</span><br></pre></td></tr></table></figure><p>但是这个参数在 npm v6.11.0 中被标记为废弃、在 v7.0.0 中被移除，已经无需指定，现在运行时是哪个用户就是哪个用户。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 开发日志 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ES 6 exprot 与 default export</title>
       <link href="2022/07/30/export/"/>
       <url>2022/07/30/export/</url>
